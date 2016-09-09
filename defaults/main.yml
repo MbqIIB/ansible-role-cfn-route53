@@ -1,0 +1,5 @@
+route53_template_src: dns.j2.json
+route53_template_dest: "{{ route53_build_dir }}/dns.json"
+route53_template_dest_tmp: "{{ route53_build_dir }}/dns.json-tmp"
+route53_build_dir: "build"
+region: "us-west-2"
