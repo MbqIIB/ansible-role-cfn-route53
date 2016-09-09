@@ -1,0 +1,31 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "{{ route53_stack_description }}",
+  "Parameters": {
+    "HostedZone": {
+      "Description": "Zone for the target domain name.",
+      "Type": "String"
+    },
+    "DNSName": {
+      "Description": "Domain name for the target",
+      "Type": "String"
+    },
+    "TargetAddress": {
+      "Description": "Target endpoint DNS name.",
+      "Type": "String"
+    }
+  },
+  "Resources":{
+    "DNSRecord":{
+      "Type" : "AWS::Route53::RecordSet",
+      "Properties":{
+        "HostedZoneName":{"Ref" : "HostedZone"},
+        "Comment": "{{ route53_comment }}",
+        "Name":{"Ref": "DNSName"},
+        "TTL": 300,
+        "Type" : "CNAME",
+        "ResourceRecords": [{"Ref" : "TargetAddress"}]
+      }
+    }
+  }
+}
